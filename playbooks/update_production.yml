@@ -4,12 +4,7 @@
   become: yes
   become_method: sudo
   tasks:
-    - name: Update packages with apt
-      when: ansible_pkg_mgr == 'apt'
-      apt:
-        update_cache: yes
-
-    - name: Upgrade packages with apt
-      when: ansible_pkg_mgr == 'apt'
-      apt:
-        upgrade: dist
+    - name: Update package cache
+      command: /usr/bin/apt update
+    - name: Upgrade all packages
+      command: /usr/bin/apt upgrade
