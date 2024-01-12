@@ -2,6 +2,7 @@
 - name: Update and upgrade apt packages
   hosts: all 
   become: yes
+  become_method: sudo
   tasks:
     - name: Update packages with apt
       when: ansible_pkg_mgr == 'apt'
