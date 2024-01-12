@@ -7,5 +7,3 @@
   tasks:
     - name: Update package cache
       command: /usr/bin/apt update
-    - name: Upgrade all packages
-      command: /usr/bin/apt upgrade
