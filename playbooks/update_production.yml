@@ -2,6 +2,7 @@
 - name: Update and upgrade apt packages
   hosts: all 
   become: yes
+  become_user: root
   become_method: sudo
   tasks:
     - name: Update package cache
