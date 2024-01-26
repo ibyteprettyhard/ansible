@@ -1,0 +1,18 @@
+---
+- name: Execute Backup Script
+  hosts: your_target_hosts
+  become: true  # Run tasks with elevated privileges (sudo)
+  tasks:
+    - name: Run the backup script
+      command: python3 /home/tomac/codespace/ansible/scripts/backup_script.py
+      register: result
+      ignore_errors: true
+
+    - name: Notify on failure
+      fail:
+        msg: "Backup script execution failed. See the logs for details."
+      when: result.rc != 0
+
+    - name: Send ntfy notification on failure with script output
+      command: curl -d "Backup script execution failed.  Output: {{ script_result.stdout }}" ntfy.sh/nostromo_alerts
+      when: script_result.rc = !=0
