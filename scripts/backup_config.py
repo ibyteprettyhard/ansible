@@ -1,11 +1,11 @@
 # backup_config.cfg
 backup_config = [
-    ("jackett", "jackett-config-backup", "config"),
+    ("jackett", "jackett-config-backup", "config", "exclude_jackett.txt"),
     # ("sonarr", "sonarr-backup", "config"),
     # ("radarr", "radarr-backup", "config"),
     # ("ombi-dm", "ombi-dm-backup", "config"),
     # ("ombi-mu", "ombi-mu-backup", "config"),
-    # ("plex-dm", "plex-dm-backup", "config"),
+    ("plex-dm", "plex-dm-backup", "config", "exclude_plex-dm.txt"),
     # ("plex-mu", "plex-mu-backup", "config"),
     # ("tautulli-dm", "tautulli-dm-backup", "config"),
     # ("portainer", "portainer-backup", "data"),
