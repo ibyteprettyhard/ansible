@@ -1,6 +1,6 @@
 ---
 - name: Execute Backup Script
-  hosts: your_target_hosts
+  hosts: all
   become: true  # Run tasks with elevated privileges (sudo)
   tasks:
     - name: Run the backup script
