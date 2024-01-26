@@ -14,5 +14,5 @@
       when: result.rc != 0
 
     - name: Send ntfy notification on failure with script output
-      command: curl -d "Backup script execution failed.  Output: {{ script_result.stdout }}" ntfy.sh/nostromo_alerts
+      command: "curl -d 'Backup script execution failed.  Output: {{ script_result.stdout }}' ntfy.sh/nostromo_alerts"
       when: script_result.rc = !=0
