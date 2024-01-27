@@ -1,0 +1,13 @@
+---
+- name: Perform Daily Backup
+  hosts: all
+  become: true  # Run tasks with elevated privileges (sudo)
+  tasks:
+    - name: Run the backup script (daily)
+      command: python3 /home/tomac/codespace/ansible/scripts/backup_init.py daily
+      register: script_result
+      ignore_errors: true
+
+    - name: Send ntfy notification on failure with script output
+      command: "curl -d 'Backup script execution failed.  Output: {{ script_result.stdout }}' ntfy.sh/nostromo_alerts"
+      when: script_result.rc != 0
