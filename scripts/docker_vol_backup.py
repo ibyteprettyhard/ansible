@@ -1,4 +1,3 @@
-# backup_script.py
 import subprocess
 from datetime import datetime
 from os.path import join, abspath, dirname
