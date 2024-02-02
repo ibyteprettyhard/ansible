@@ -1,0 +1,13 @@
+---
+- name: Perform Weekly Backup
+  hosts: 10.10.10.41
+  become: true  # Run tasks with elevated privileges (sudo)
+  tasks:
+    - name: Run the backup script (weekly)
+      command: python3 /home/tomac/codespace/ansible/scripts/backup_init.py weekly
+      register: script_result
+      ignore_errors: true
+
+    - name: Send ntfy notification on failure with script output
+      command: "curl -d 'Weekly backup failed.  Output: {{ script_result.stdout }}' ntfy.sh/nostromo_alerts"
+      when: script_result.rc != 0
