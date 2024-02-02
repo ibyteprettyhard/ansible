@@ -55,5 +55,5 @@ if __name__ == "__main__":
     clear_old_files(folder_path, days_to_keep)
     
     # Run the docker_vol_backup.py command
-    backup_command = f"python3 docker_vol_backup.py {folder_path}"
+    backup_command = f"python3 /opt/scripts/docker_vol_backup.py {folder_path}"
     run_docker_backup(backup_command)
