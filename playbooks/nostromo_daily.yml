@@ -1,6 +1,6 @@
 ---
 - name: Perform Daily Backup
-  hosts: all
+  hosts: 10.10.10.41
   become: true  # Run tasks with elevated privileges (sudo)
   tasks:
     - name: Run the backup script (daily)
@@ -9,5 +9,5 @@
       ignore_errors: true
 
     - name: Send ntfy notification on failure with script output
-      command: "curl -d 'Backup script execution failed.  Output: {{ script_result.stdout }}' ntfy.sh/nostromo_alerts"
+      command: "curl -d 'Daily backup failed.  Output: {{ script_result.stdout }}' ntfy.sh/nostromo_alerts"
       when: script_result.rc != 0
