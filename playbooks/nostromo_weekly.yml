@@ -4,7 +4,7 @@
   become: true  # Run tasks with elevated privileges (sudo)
   tasks:
     - name: Run the backup script (weekly)
-      command: python3 /home/tomac/codespace/ansible/scripts/backup_init.py weekly
+      command: python3 /opt/scripts/backup_init.py weekly
       register: script_result
       ignore_errors: true
 
