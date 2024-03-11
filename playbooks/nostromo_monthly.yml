@@ -1,0 +1,13 @@
+---
+- name: Perform Daily Backup
+  hosts: 10.10.10.41
+  become: true  # Run tasks with elevated privileges (sudo)
+  tasks:
+    - name: Run the backup script (daily)
+      command: python3 /opt/scripts/backup_init.py monthly
+      register: script_result
+      ignore_errors: true
+
+    - name: Send ntfy notification on failure with script output
+      command: "curl -d 'Daily backup failed.  Output: {{ script_result.stdout }}' ntfy.sh/nostromo_alerts"
+      when: script_result.rc != 0
